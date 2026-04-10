@@ -58,3 +58,19 @@ jobs:
         echo "Running basic tests..."
         python -c "import flask; print('Flask OK')"
         echo "Tests passed!"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build-and-test, test]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Deploy notification
+      run: |
+        echo "✅ Images pushed to Docker Hub"
+        echo "📦 Backend: anas1755521/todo-backend:latest"
+        echo "📦 Frontend: anas1755521/todo-frontend:latest"
+        echo "🚀 Ready to deploy on k3s cluster"
