@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Todo App</title></head>
+<body>
+<h1>Todo App</h1>
+<form action="/add" method="post">
+  <input type="text" name="title" placeholder="Titre" required>
+  <input type="text" name="description" placeholder="Description">
+  <button type="submit">Ajouter</button>
+</form>
+<ul>
+{% for task in tasks %}
+  <li>{{ task.title }} - {{ task.description }} [{{ task.status }}]
+    <a href="/delete/{{ task.id }}">Supprimer</a>
+  </li>
+{% endfor %}
+</ul>
+</body>
+</html>
